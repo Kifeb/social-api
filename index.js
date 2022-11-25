@@ -12,16 +12,18 @@ import relationshipRoutes from "./api/routes/relationship.routes.js";
 import dotenv from "dotenv"
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 // Middlewere
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 app.use((req, res, next) => {
 	res.header("Access-Control-Allow-Credentials", true);
+	res.header("Access-Control-Allow-Credentials", true);
 	next();
   });
 app.use(cors({
-	origin: "http://localhost:3000",
+	origin: "*",
 }));
 app.use(cookieParser())
 app.use(bodyParser.json())
@@ -51,4 +53,4 @@ app.use("/api/comments", commentRoutes)
 app.use("/api/auth", authRoutes)
 app.use("/api/relationships", relationshipRoutes)
 
-app.listen(5000, () => console.log("API Connected"))
+app.listen(PORT, () => console.log("API Connected"))
