@@ -9,6 +9,7 @@ import likeRoutes from "./api/routes/likes.routes.js";
 import commentRoutes from "./api/routes/comments.routes.js";
 import authRoutes from "./api/routes/auth.routes.js";
 import relationshipRoutes from "./api/routes/relationship.routes.js";
+import dotenv from "dotenv"
 
 const app = express();
 

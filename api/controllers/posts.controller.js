@@ -8,7 +8,7 @@ export const getPosts = (req, res) => {
     const token = req.cookies.accessToken;
     if(!token) return res.status(401).json("Not logged in!");
 
-    jwt.verify(token,"secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.SECRET_KEY, (err, userInfo) => {
         if (err) return res.status(403).json("Invalid Token");
 
         const query = userId != "undefined"
@@ -30,7 +30,7 @@ export const addPost = (req, res) => {
     const token = req.cookies.accessToken;
     if(!token) return res.status(401).json("Not logged in!");
 
-    jwt.verify(token,"secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.SECRET_KEY, (err, userInfo) => {
         if (err) return res.status(403).json("Invalid Token");
 
         const query = "INSERT INTO posts(`desc`, `img`, `createdAt`, `userId`) VALUES (?)";
@@ -55,7 +55,7 @@ export const deletePost = (req, res) => {
     const token = req.cookies.accessToken;
     if(!token) return res.status(401).json("Not logged in!");
 
-    jwt.verify(token,"secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.SECRET_KEY, (err, userInfo) => {
         if (err) return res.status(403).json("Invalid Token");
 
         const query = "DELETE FROM posts WHERE `id` = ? AND `userId` = ?";
